@@ -168,6 +168,86 @@ Each service README includes a "Source Tracking" section:
 - **Source date:** 2025-09-16
 - **Source files:** `docker-compose.keycloak.yml`, `DockerFile.keycloak`, `local-dev-realm.json`
 
+### Development Tools
+
+#### Jupyter Lab (Multi-Kernel)
+- **Location:** `services/dev-tools/jupyter/`
+- **Migrated from:** RunScripts
+- **Source commit:** `859fc4da005996424df7f5cdde45c3d56768b3ad`
+- **Source date:** 2026-01-09
+- **Source file:** `MorePower/DockerFile.jupyter`
+- **Notes:** Multi-language Jupyter Lab with Python, .NET, Java, Go, Ruby, TypeScript kernels
+
+#### DevBox
+- **Location:** `services/dev-tools/devbox/`
+- **Migrated from:** RunScripts
+- **Source commit:** `859fc4da005996424df7f5cdde45c3d56768b3ad`
+- **Source date:** 2026-01-09
+- **Source file:** `MorePower/DockerFile.devbox`
+- **Notes:** Polyglot development environment with Node.js, .NET, Java, Go, Rust, PlatformIO, Claude Code CLI
+
+#### GNU COBOL
+- **Location:** `services/dev-tools/gnucobol/`
+- **Migrated from:** RunScripts
+- **Source commit:** `859fc4da005996424df7f5cdde45c3d56768b3ad`
+- **Source date:** 2026-01-09
+- **Source file:** `MorePower/DockerFile.gnucobol`
+- **Notes:** GNU COBOL compiler for COBOL development
+
+#### Google Chrome
+- **Location:** `services/dev-tools/google-chrome/`
+- **Migrated from:** RunScripts
+- **Source commit:** `859fc4da005996424df7f5cdde45c3d56768b3ad`
+- **Source date:** 2026-01-09
+- **Source files:** `MorePower/DockerFile.google-chrome`, `MorePower/chrome-start.sh`
+- **Notes:** Chrome browser with WSLg support and remote debugging
+
+### AI/ML Services (Additional)
+
+#### ComfyUI
+- **Location:** `services/ai-ml/comfyui/`
+- **Migrated from:** RunScripts
+- **Source commit:** `859fc4da005996424df7f5cdde45c3d56768b3ad`
+- **Source date:** 2026-01-09
+- **Source file:** `MorePower/DockerFile.comfyui`
+- **Notes:** Uses third-party image xingren23/comfyui:comfyui-cu121-v1.0.7
+
+#### TensorFlow Jupyter Lab
+- **Location:** `services/ai-ml/tensorflow-jupyterlab/`
+- **Migrated from:** RunScripts
+- **Source commit:** `859fc4da005996424df7f5cdde45c3d56768b3ad`
+- **Source date:** 2026-01-09
+- **Source file:** `MorePower/DockerFile.tensorflow-jupyterlab`
+- **Notes:** TensorFlow with Jupyter Lab and data science libraries
+
+### Utilities (Additional)
+
+#### Wine
+- **Location:** `services/utilities/wine/`
+- **Migrated from:** RunScripts
+- **Source commit:** `859fc4da005996424df7f5cdde45c3d56768b3ad`
+- **Source date:** 2026-01-09
+- **Source file:** `MorePower/DockerFile.wine`
+- **Notes:** Windows compatibility layer with WSLg support
+
+### FPGA Tools
+
+#### Intel Quartus
+- **Location:** `services/fpga-tools/quartus/`
+- **Migrated from:** RunScripts
+- **Source commit:** `859fc4da005996424df7f5cdde45c3d56768b3ad`
+- **Source date:** 2026-01-09
+- **Source file:** `MorePower/DockerFile.Quartus`
+- **Notes:** Dependencies only - requires manual Quartus installation from Intel
+
+#### AMD/Xilinx Vivado
+- **Location:** `services/fpga-tools/vivado/`
+- **Migrated from:** RunScripts
+- **Source commit:** `859fc4da005996424df7f5cdde45c3d56768b3ad`
+- **Source date:** 2026-01-09
+- **Source file:** `MorePower/DockerFile.Vivado`
+- **Notes:** Dependencies only - requires manual Vivado installation from AMD/Xilinx
+
 ### Templates
 
 #### .NET Application
@@ -206,3 +286,4 @@ When checking for updates from source repositories:
 
 *Created: 2026-01-09*
 *Last updated: 2026-01-09*
+*Services tracked: 27 (18 from ContainerStore, 9 from RunScripts)*

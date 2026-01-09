@@ -1,0 +1,31 @@
+name: vivado
+
+services:
+  vivado:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: outofbanddevelopment/vivado:${VIVADO_VERSION:-latest}
+    container_name: vivado
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-wayland-0}
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/mnt/wslg/runtime-dir}
+      - PULSE_SERVER=${PULSE_SERVER:-/mnt/wslg/PulseServer}
+    volumes:
+      - vivado-projects:/workspace
+      - vivado-installation:/opt/Xilinx
+      # WSLg sockets (Windows WSL2)
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /mnt/wslg:/mnt/wslg
+    network_mode: host
+    ipc: host
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  vivado-projects:
+    name: vivado-projects
+  vivado-installation:
+    name: vivado-installation
