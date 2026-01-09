@@ -13,7 +13,7 @@ This template works with **any .NET project** by accepting the project name and 
 **Linux/macOS:**
 ```bash
 # Copy template to your project
-cp -r templates/dotnet-cqrs-app/* /path/to/your-dotnet-project/
+cp -r templates/dotnet-app/* /path/to/your-dotnet-project/
 
 # Build with your project name
 cd /path/to/your-dotnet-project
@@ -23,7 +23,7 @@ cd /path/to/your-dotnet-project
 **Windows:**
 ```cmd
 REM Copy template to your project
-xcopy /E /I templates\dotnet-cqrs-app\* C:\path\to\your-dotnet-project\
+xcopy /E /I templates\dotnet-app\* C:\path\to\your-dotnet-project\
 
 REM Build with your project name
 cd C:\path\to\your-dotnet-project
