@@ -1,0 +1,36 @@
+{{- if .Values.sbert.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vector-search-rag.fullname" . }}-sbert
+  labels:
+    {{- include "vector-search-rag.labels" . | nindent 4 }}
+    app.kubernetes.io/component: sbert
+spec:
+  replicas: {{ .Values.sbert.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "vector-search-rag.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: sbert
+  template:
+    metadata:
+      labels:
+        {{- include "vector-search-rag.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: sbert
+    spec:
+      containers:
+      - name: sbert
+        image: "{{ .Values.sbert.image.repository }}:{{ .Values.sbert.image.tag }}"
+        imagePullPolicy: {{ .Values.sbert.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        env:
+        - name: MODEL_NAME
+          value: {{ .Values.sbert.env.model }}
+        - name: QDRANT_URL
+          value: {{ .Values.sbert.env.qdrantUrl }}
+        resources:
+          {{- toYaml .Values.sbert.resources | nindent 12 }}
+{{- end }}

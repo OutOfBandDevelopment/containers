@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    deploy:
+      replicas: 2
+      placement:
+        constraints:
+          - node.labels.gpu == true
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - rag-network
+    volumes:
+      - ollama-data:/root/.ollama
+
+  qdrant:
+    image: qdrant/qdrant:latest
+    deploy:
+      replicas: 3
+      placement:
+        constraints:
+          - node.labels.storage == ssd
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 2G
+    networks:
+      - rag-network
+    volumes:
+      - qdrant-storage:/qdrant/storage
+      - qdrant-snapshots:/qdrant/snapshots
+
+  sbert:
+    image: outofbanddevelopment/sbert:latest
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 1G
+    networks:
+      - rag-network
+    environment:
+      - QDRANT_URL=http://qdrant:6333
+
+networks:
+  rag-network:
+    driver: overlay
+    attachable: true
+
+volumes:
+  ollama-data:
+    driver: local
+  qdrant-storage:
+    driver: local
+  qdrant-snapshots:
+    driver: local

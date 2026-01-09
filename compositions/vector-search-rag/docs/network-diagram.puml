@@ -1,0 +1,20 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Network Diagram - Vector Search RAG Composition
+
+Person(user, "Application", "RAG application using the stack")
+
+System_Boundary(rag, "Vector Search RAG Stack") {
+    Container(ollama, "Ollama", "LLM Runtime", "Text generation and completion")
+    Container(sbert, "SBERT", "Python/Flask", "Sentence embedding generation")
+    ContainerDb(qdrant, "Qdrant", "Vector DB", "Semantic search and retrieval")
+}
+
+Rel(user, ollama, "Generate text", "HTTP:11434")
+Rel(user, sbert, "Generate embeddings", "HTTP:8080")
+Rel(user, qdrant, "Search vectors", "HTTP:6333")
+Rel(ollama, qdrant, "RAG context retrieval", "gRPC:6334")
+Rel(sbert, qdrant, "Store embeddings", "HTTP:6333")
+
+@enduml

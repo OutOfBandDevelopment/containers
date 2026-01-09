@@ -1,0 +1,19 @@
+{{- if .Values.sbert.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "vector-search-rag.fullname" . }}-sbert
+  labels:
+    {{- include "vector-search-rag.labels" . | nindent 4 }}
+    app.kubernetes.io/component: sbert
+spec:
+  type: {{ .Values.sbert.service.type }}
+  ports:
+    - port: {{ .Values.sbert.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "vector-search-rag.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/component: sbert
+{{- end }}

@@ -1,0 +1,29 @@
+name: vector-search-rag
+
+services:
+  ollama:
+    extends:
+      file: ../../services/ai-ml/ollama/docker-compose.yml
+      service: ollama
+    networks:
+      - rag-network
+
+  qdrant:
+    extends:
+      file: ../../services/databases/qdrant/docker-compose.yml
+      service: qdrant
+    networks:
+      - rag-network
+
+  sbert:
+    extends:
+      file: ../../services/ai-ml/sbert/docker-compose.yml
+      service: sbert
+    networks:
+      - rag-network
+    environment:
+      - QDRANT_URL=http://qdrant:6333
+
+networks:
+  rag-network:
+    driver: bridge

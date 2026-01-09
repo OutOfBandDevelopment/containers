@@ -1,0 +1,77 @@
+# Default values for vector-search-rag composition
+
+# Global settings
+global:
+  storageClass: "standard"
+
+# Ollama LLM service
+ollama:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: ollama/ollama
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  service:
+    type: ClusterIP
+    port: 11434
+
+  resources:
+    limits:
+      nvidia.com/gpu: 1
+      memory: 8Gi
+    requests:
+      memory: 4Gi
+
+  persistence:
+    enabled: true
+    size: 50Gi
+
+# Qdrant vector database
+qdrant:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: qdrant/qdrant
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  service:
+    type: ClusterIP
+    httpPort: 6333
+    grpcPort: 6334
+
+  resources:
+    limits:
+      memory: 4Gi
+    requests:
+      memory: 2Gi
+
+  persistence:
+    enabled: true
+    storageSize: 20Gi
+    snapshotsSize: 5Gi
+
+# SBERT embedding service
+sbert:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: outofbanddevelopment/sbert
+    tag: latest
+    pullPolicy: IfNotPresent
+
+  service:
+    type: ClusterIP
+    port: 8080
+
+  env:
+    model: all-MiniLM-L6-v2
+    qdrantUrl: http://qdrant:6333
+
+  resources:
+    limits:
+      memory: 2Gi
+    requests:
+      memory: 1Gi

@@ -1,0 +1,15 @@
+apiVersion: v2
+name: vector-search-rag
+description: Vector search and RAG stack with Ollama, Qdrant, and SBERT
+type: application
+version: 1.0.0
+appVersion: "1.0"
+keywords:
+  - ai
+  - ml
+  - rag
+  - vector-search
+  - llm
+maintainers:
+  - name: Matthew Whited
+    email: noreply@outofbanddevelopment.com

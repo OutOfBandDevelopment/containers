@@ -1,0 +1,30 @@
+# Development environment overrides
+
+ollama:
+  replicaCount: 1
+  resources:
+    limits:
+      memory: 4Gi
+    requests:
+      memory: 2Gi
+  persistence:
+    size: 20Gi
+
+qdrant:
+  replicaCount: 1
+  resources:
+    limits:
+      memory: 2Gi
+    requests:
+      memory: 1Gi
+  persistence:
+    storageSize: 10Gi
+    snapshotsSize: 2Gi
+
+sbert:
+  replicaCount: 1
+  resources:
+    limits:
+      memory: 1Gi
+    requests:
+      memory: 512Mi

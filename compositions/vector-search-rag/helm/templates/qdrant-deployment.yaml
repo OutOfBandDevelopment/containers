@@ -1,0 +1,54 @@
+{{- if .Values.qdrant.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "vector-search-rag.fullname" . }}-qdrant
+  labels:
+    {{- include "vector-search-rag.labels" . | nindent 4 }}
+    app.kubernetes.io/component: qdrant
+spec:
+  replicas: {{ .Values.qdrant.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "vector-search-rag.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: qdrant
+  template:
+    metadata:
+      labels:
+        {{- include "vector-search-rag.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: qdrant
+    spec:
+      containers:
+      - name: qdrant
+        image: "{{ .Values.qdrant.image.repository }}:{{ .Values.qdrant.image.tag }}"
+        imagePullPolicy: {{ .Values.qdrant.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 6333
+          protocol: TCP
+        - name: grpc
+          containerPort: 6334
+          protocol: TCP
+        resources:
+          {{- toYaml .Values.qdrant.resources | nindent 12 }}
+        volumeMounts:
+        - name: storage
+          mountPath: /qdrant/storage
+        - name: snapshots
+          mountPath: /qdrant/snapshots
+      volumes:
+      - name: storage
+        {{- if .Values.qdrant.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ include "vector-search-rag.fullname" . }}-qdrant-storage
+        {{- else }}
+        emptyDir: {}
+        {{- end }}
+      - name: snapshots
+        {{- if .Values.qdrant.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ include "vector-search-rag.fullname" . }}-qdrant-snapshots
+        {{- else }}
+        emptyDir: {}
+        {{- end }}
+{{- end }}

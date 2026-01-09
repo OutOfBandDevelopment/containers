@@ -1,0 +1,23 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Deployment.puml
+
+title Deployment Diagram - Vector Search RAG Composition
+
+Deployment_Node(docker_host, "Docker Host", "Linux Server") {
+    Deployment_Node(ollama_container, "Ollama Container") {
+        Container(ollama, "Ollama", "LLM Runtime", "Runs language models for text generation")
+    }
+
+    Deployment_Node(qdrant_container, "Qdrant Container") {
+        ContainerDb(qdrant, "Qdrant", "Vector Database", "Stores and searches embeddings")
+    }
+
+    Deployment_Node(sbert_container, "SBERT Container") {
+        Container(sbert, "SBERT", "Embedding Service", "Generates sentence embeddings")
+    }
+}
+
+Rel(ollama, qdrant, "Retrieves context", "gRPC:6334")
+Rel(sbert, qdrant, "Stores embeddings", "HTTP:6333")
+
+@enduml
