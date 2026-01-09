@@ -1,0 +1,21 @@
+name: dev-go
+
+services:
+  dev-go:
+    image: golang:${GO_VERSION:-1.23}
+    container_name: dev-go
+    environment:
+      - GOPATH=/go
+    volumes:
+      - go-workspace:/workspace
+      - go-modules:/go
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  go-workspace:
+    name: go-workspace
+  go-modules:
+    name: go-modules

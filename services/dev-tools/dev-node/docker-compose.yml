@@ -1,0 +1,19 @@
+name: dev-node
+
+services:
+  dev-node:
+    image: node:${NODE_VERSION:-lts}
+    container_name: dev-node
+    volumes:
+      - node-workspace:/workspace
+      - node-modules:/root/.npm
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  node-workspace:
+    name: node-workspace
+  node-modules:
+    name: node-modules

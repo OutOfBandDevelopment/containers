@@ -1,0 +1,19 @@
+name: dev-java
+
+services:
+  dev-java:
+    image: eclipse-temurin:${JAVA_VERSION:-21-jdk}
+    container_name: dev-java
+    volumes:
+      - java-workspace:/workspace
+      - maven-cache:/root/.m2
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  java-workspace:
+    name: java-workspace
+  maven-cache:
+    name: maven-cache

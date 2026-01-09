@@ -1,0 +1,19 @@
+name: dev-python
+
+services:
+  dev-python:
+    image: python:${PYTHON_VERSION:-3.12}
+    container_name: dev-python
+    volumes:
+      - python-workspace:/workspace
+      - python-pip:/root/.cache/pip
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  python-workspace:
+    name: python-workspace
+  python-pip:
+    name: python-pip

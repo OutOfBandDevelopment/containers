@@ -1,0 +1,19 @@
+name: dev-rust
+
+services:
+  dev-rust:
+    image: rust:${RUST_VERSION:-latest}
+    container_name: dev-rust
+    volumes:
+      - rust-workspace:/workspace
+      - rust-cargo:/usr/local/cargo
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  rust-workspace:
+    name: rust-workspace
+  rust-cargo:
+    name: rust-cargo
