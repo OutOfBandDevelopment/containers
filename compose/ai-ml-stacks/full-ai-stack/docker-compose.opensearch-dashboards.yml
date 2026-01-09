@@ -1,0 +1,9 @@
+name: opensearch-dashboards
+services:
+
+  opensearch-dashboards:
+    image: opensearchproject/opensearch-dashboards:latest
+    environment:
+      OPENSEARCH_HOSTS: '["http://container-store-opensearch-1:9200"]'
+    ports: 
+      - 5601:5601

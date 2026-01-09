@@ -1,0 +1,13 @@
+name: paradedb
+services:
+    paradedb:
+        ports:
+        - ${PARADEDB_PORT:-5432}:5432
+        environment:
+        - POSTGRESQL_USERNAME=${POSTGRESQL_USERNAME:-admin}
+        - POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD:-YourStrong@Password}
+        - POSTGRESQL_DATABASE=${POSTGRESQL_DATABASE:-libs_db}
+        - POSTGRESQL_POSTGRES_PASSWORD=${POSTGRESQL_POSTGRES_PASSWORD:-YourStrong@Password}
+        image: paradedb/paradedb
+        volumes:
+        - paradedb-data:/bitnami/postgresql

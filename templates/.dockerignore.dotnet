@@ -1,0 +1,45 @@
+# .dockerignore template for .NET projects
+# Migrated from: code/learn/CQRS-Examples
+
+# IDE and editor files
+**/.classpath
+**/.project
+**/.settings
+**/.toolstarget
+**/.vs
+**/.vscode
+**/*.*proj.user
+
+# Build outputs
+**/bin
+**/obj
+
+# Docker files (avoid recursion)
+**/.dockerignore
+**/docker-compose*
+**/Dockerfile*
+
+# Git
+**/.git
+**/.gitignore
+
+# Environment and secrets
+**/.env
+**/secrets.dev.yaml
+**/values.dev.yaml
+
+# Database files
+**/*.dbmdl
+**/*.jfm
+
+# Node modules (for projects with frontend)
+**/node_modules
+**/npm-debug.log
+
+# Kubernetes
+**/charts
+**/azds.yaml
+
+# Documentation (usually not needed in container)
+LICENSE
+README.md

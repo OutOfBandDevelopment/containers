@@ -1,0 +1,14 @@
+name: ollama
+services:
+  ollama:
+    build:
+      dockerfile: DockerFile.ollama
+      context: .
+    ports:
+      - ${OLLAMA_PORT:-11434}:11434
+    volumes:
+      - ollama-data:/root/.ollama
+    restart: unless-stopped
+
+volumes:
+  ollama-data:

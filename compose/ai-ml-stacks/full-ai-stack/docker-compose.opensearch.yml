@@ -1,0 +1,13 @@
+name: opensearch
+services:
+
+  opensearch:
+    image: opensearchproject/opensearch:latest
+    environment:
+      - discovery.type=single-node
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_ADMIN_PASSWORD:-YourStrong@Password}
+    ports:
+      - ${OPENSEARCH_PORT:-9200}:9200
+      - ${OPENSEARCH_PERF_PORT:-9600}:9600 
+  volumes:
+  - opensearch-data:/usr/share/opensearch/data
