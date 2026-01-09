@@ -19,11 +19,11 @@ This inventory identifies all Docker assets across repositories for migration in
 
 ## Dockerfiles Found
 
-### Eliassen/Notes/Retired Projects/ERiskServices/SubmissionClearing/code/src/ERisk.SubmissionClearing/ERisk.SubmissionClearing.API
+### [Company]/Notes/Retired Projects/[Services]/SubmissionClearing/code/src/ERisk.SubmissionClearing/ERisk.SubmissionClearing.API
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/Eliassen/Notes/Retired Projects/ERiskServices/SubmissionClearing/code/src/ERisk.SubmissionClearing/ERisk.SubmissionClearing.API/Dockerfile` |
+| **Location** | `/current/src/[Company]/Notes/Retired Projects/[Services]/SubmissionClearing/code/src/ERisk.SubmissionClearing/ERisk.SubmissionClearing.API/Dockerfile` |
 | **Privacy** | PRIVATE |
 | **Base Image** | `mcr.microsoft.com/dotnet/aspnet:6.0` |
 | **Size** | 28 lines |
@@ -248,11 +248,11 @@ prometheus_config
 
 ---
 
-### Eliassen/Notes/Retired Projects/ERiskServices/SubmissionClearing/code/src/docker-compose-cpu.yml
+### [Company]/Notes/Retired Projects/[Services]/SubmissionClearing/code/src/docker-compose-cpu.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/Eliassen/Notes/Retired Projects/ERiskServices/SubmissionClearing/code/src/docker-compose-cpu.yml` |
+| **Location** | `/current/src/[Company]/Notes/Retired Projects/[Services]/SubmissionClearing/code/src/docker-compose-cpu.yml` |
 | **Privacy** | PRIVATE |
 | **Services** | ~3 services |
 | **Size** | 16 lines |
@@ -266,11 +266,11 @@ backend
 
 ---
 
-### Eliassen/Notes/Retired Projects/ERiskServices/SubmissionClearing/code/src/docker-compose.sql-server.yml
+### [Company]/Notes/Retired Projects/[Services]/SubmissionClearing/code/src/docker-compose.sql-server.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/Eliassen/Notes/Retired Projects/ERiskServices/SubmissionClearing/code/src/docker-compose.sql-server.yml` |
+| **Location** | `/current/src/[Company]/Notes/Retired Projects/[Services]/SubmissionClearing/code/src/docker-compose.sql-server.yml` |
 | **Privacy** | PRIVATE |
 | **Services** | ~0 services |
 | **Size** | 13 lines |
@@ -677,11 +677,11 @@ plantuml
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose-cpu.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose-cpu.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose-cpu.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose-cpu.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~19 services |
 | **Size** | 163 lines |
@@ -711,11 +711,11 @@ backend
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose-cuda.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose-cuda.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose-cuda.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose-cuda.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~19 services |
 | **Size** | 163 lines |
@@ -745,33 +745,33 @@ backend
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.apache-tika.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.apache-tika.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.apache-tika.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.apache-tika.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 5 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.azurite.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.azurite.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.azurite.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.azurite.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 18 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.kafka.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.kafka.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.kafka.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.kafka.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~1 services |
 | **Size** | 21 lines |
@@ -783,66 +783,66 @@ kafka
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.keycloak.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.keycloak.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.keycloak.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.keycloak.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 14 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.localstack.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.localstack.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.localstack.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.localstack.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 6 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.mongodb.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.mongodb.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.mongodb.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.mongodb.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 7 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.ollama.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.ollama.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.ollama.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.ollama.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 8 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.open-webui.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.open-webui.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.open-webui.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.open-webui.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 10 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.opensearch-dashboards.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.opensearch-dashboards.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.opensearch-dashboards.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.opensearch-dashboards.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~1 services |
 | **Size** | 8 lines |
@@ -854,11 +854,11 @@ opensearch-dashboards
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.opensearch.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.opensearch.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.opensearch.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.opensearch.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~2 services |
 | **Size** | 12 lines |
@@ -871,55 +871,55 @@ volumes
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.paradedb.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.paradedb.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.paradedb.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.paradedb.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 13 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.pgadmin.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.pgadmin.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.pgadmin.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.pgadmin.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 14 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.qdrant.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.qdrant.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.qdrant.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.qdrant.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 9 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.rabbitmq.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.rabbitmq.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.rabbitmq.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.rabbitmq.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 8 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.sbert.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.sbert.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.sbert.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.sbert.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~1 services |
 | **Size** | 9 lines |
@@ -931,22 +931,22 @@ sbert
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.smtp4dev.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.smtp4dev.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.smtp4dev.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.smtp4dev.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 10 lines |
 
 ---
 
-### code/public/eliassen-ContainerStore/docker/docker-compose.sql-server.yml
+### code/public/[Company]-ContainerStore/docker/docker-compose.sql-server.yml
 
 | Field | Value |
 |:------|:------|
-| **Location** | `/current/src/code/public/eliassen-ContainerStore/docker/docker-compose.sql-server.yml` |
+| **Location** | `/current/src/code/public/[Company]-ContainerStore/docker/docker-compose.sql-server.yml` |
 | **Privacy** | PUBLIC |
 | **Services** | ~0 services |
 | **Size** | 11 lines |
@@ -956,7 +956,7 @@ sbert
 
 ## .dockerignore Files Found
 
-- **Eliassen/Notes/Retired Projects/ERiskServices/SubmissionClearing/code/src/ERisk.SubmissionClearing** (PRIVATE, 30 patterns)
+- **[Company]/Notes/Retired Projects/[Services]/SubmissionClearing/code/src/ERisk.SubmissionClearing** (PRIVATE, 30 patterns)
 - **code/learn/CQRS-Examples/src/ExampleApp** (PUBLIC, 25 patterns)
 - **code/learn/YearOfCode2024/src/hybridsearch/HybridSearchCSharp** (PUBLIC, 30 patterns)
 - **code/private/AnotherOneBytesTheDust/SimilaritySearchExample/src** (PUBLIC, 30 patterns)
@@ -966,7 +966,7 @@ sbert
 - **code/private/ERiskTestApp/src/src/ERisk.SubmissionClearing** (PUBLIC, 30 patterns)
 - **code/private/MigratedFromTfs/src/ToyBox/OldStuff/Lightwell.ReferenceFramework** (PUBLIC, 9 patterns)
 - **code/public/SimilaritySearchExample/src** (PUBLIC, 30 patterns)
-- **code/public/eliassen-jhipster-sample-application** (PUBLIC, 20 patterns)
+- **code/public/[Company]-jhipster-sample-application** (PUBLIC, 20 patterns)
 
 ---
 
@@ -983,7 +983,7 @@ sbert
 
 ### Medium Priority (Private Assets - Requires Sanitization)
 
-1. **ContainerStore (eliassen)** - AI/ML development stack
+1. **ContainerStore ([Company])** - AI/ML development stack
 2. **Private repositories** - Various Docker assets
 
 **Action:** Requires PII sanitization before migration. Use `/current/src/private/client-name-scanner.sh` to verify.
