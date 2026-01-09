@@ -1,6 +1,6 @@
 # Docker Assets Inventory
 
-**Scan Date:** $(date +"%Y-%m-%d %H:%M:%S")
+**Scan Date:** 2026-01-09 11:43:03
 **Scan Root:** /current/src
 
 This inventory identifies all Docker assets across repositories for migration into the containers collection.
@@ -88,7 +88,8 @@ final
 |:------|:------|
 | **Location** | `/current/src/code/learn/YearOfLanguages2023/src/tensorflow/Dockerfile` |
 | **Privacy** | PUBLIC |
-| **Base Image** | `tensorflow/tensorflow:latest-gpu` |
+| **Base Image** | `tensorflow/tensorflow:latest-gpu
+` |
 | **Size** | 10 lines |
 
 ---

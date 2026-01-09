@@ -90,10 +90,88 @@ Each service README includes a "Source Tracking" section:
   - `SBERT-CUDA/Dockerfile` (RunScripts CUDA)
 - **Notes:** Consolidated 3 versions into 1 with build args and profiles
 
+### Utilities
+
+#### Apache Tika
+- **Location:** `services/utilities/apache-tika/`
+- **Migrated from:** AnotherOneBytesTheDust/ContainerStore
+- **Source commit:** `fe623ee56a7289bbb1602c9f9cadf6c214496612`
+- **Source date:** 2025-09-16
+- **Source file:** `docker-compose.apache-tika.yml`
+
+#### pgAdmin
+- **Location:** `services/utilities/pgadmin/`
+- **Migrated from:** AnotherOneBytesTheDust/ContainerStore
+- **Source commit:** `fe623ee56a7289bbb1602c9f9cadf6c214496612`
+- **Source date:** 2025-09-16
+- **Source file:** `docker-compose.pgadmin.yml`
+
+#### OpenSearch Dashboards
+- **Location:** `services/utilities/opensearch-dashboards/`
+- **Migrated from:** AnotherOneBytesTheDust/ContainerStore
+- **Source commit:** `fe623ee56a7289bbb1602c9f9cadf6c214496612`
+- **Source date:** 2025-09-16
+- **Source file:** `docker-compose.opensearch-dashboards.yml`
+
+#### SMTP4Dev
+- **Location:** `services/utilities/smtp4dev/`
+- **Migrated from:** AnotherOneBytesTheDust/ContainerStore
+- **Source commit:** `fe623ee56a7289bbb1602c9f9cadf6c214496612`
+- **Source date:** 2025-09-16
+- **Source file:** `docker-compose.smtp4dev.yml`
+
+#### Open WebUI
+- **Location:** `services/utilities/open-webui/`
+- **Migrated from:** AnotherOneBytesTheDust/ContainerStore
+- **Source commit:** `fe623ee56a7289bbb1602c9f9cadf6c214496612`
+- **Source date:** 2025-09-16
+- **Source file:** `docker-compose.open-webui.yml`
+
+### Messaging
+
+#### RabbitMQ
+- **Location:** `services/messaging/rabbitmq/`
+- **Migrated from:** AnotherOneBytesTheDust/ContainerStore
+- **Source commit:** `fe623ee56a7289bbb1602c9f9cadf6c214496612`
+- **Source date:** 2025-09-16
+- **Source file:** `docker-compose.rabbitmq.yml`
+
+#### Apache Kafka
+- **Location:** `services/messaging/kafka/`
+- **Migrated from:** AnotherOneBytesTheDust/ContainerStore
+- **Source commit:** `fe623ee56a7289bbb1602c9f9cadf6c214496612`
+- **Source date:** 2025-09-16
+- **Source file:** `docker-compose.kafka.yml`
+
+### Cloud Emulators
+
+#### Azurite
+- **Location:** `services/cloud-emulators/azurite/`
+- **Migrated from:** AnotherOneBytesTheDust/ContainerStore
+- **Source commit:** `fe623ee56a7289bbb1602c9f9cadf6c214496612`
+- **Source date:** 2025-09-16
+- **Source file:** `docker-compose.azurite.yml`
+
+#### LocalStack
+- **Location:** `services/cloud-emulators/localstack/`
+- **Migrated from:** AnotherOneBytesTheDust/ContainerStore
+- **Source commit:** `fe623ee56a7289bbb1602c9f9cadf6c214496612`
+- **Source date:** 2025-09-16
+- **Source file:** `docker-compose.localstack.yml`
+
+### Authentication
+
+#### Keycloak
+- **Location:** `services/auth/keycloak/`
+- **Migrated from:** AnotherOneBytesTheDust/ContainerStore
+- **Source commit:** `fe623ee56a7289bbb1602c9f9cadf6c214496612`
+- **Source date:** 2025-09-16
+- **Source files:** `docker-compose.keycloak.yml`, `DockerFile.keycloak`, `local-dev-realm.json`
+
 ### Templates
 
-#### .NET CQRS Application
-- **Location:** `templates/dotnet-cqrs-app/`
+#### .NET Application
+- **Location:** `templates/dotnet-app/`
 - **Migrated from:** code/learn/CQRS-Examples
 - **Source commit:** `[commit-hash-needed]`
 - **Source date:** 2025-XX-XX

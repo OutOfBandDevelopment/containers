@@ -2,9 +2,21 @@
 
 This file provides guidance to Claude Code when working in this repository.
 
+## Key Documents
+
+**CRITICAL: Always consult these documents before making changes:**
+
+- **ARCHITECTURE.md**: System architecture, design decisions, service patterns (v3.0)
+- **STYLE_GUIDE.md**: Naming conventions, file structures, documentation standards
+- **COMPOSITION_GUIDE.md**: Creating compositions with PlantUML, Swarm, Kubernetes/Helm
+- **MIGRATION_STATUS.md**: Current migration progress and remaining work
+- **SOURCE_TRACKING.md**: Source repository tracking for updates
+
 ## Repository Overview
 
 Centralized collection of Docker containers, images, and compose stacks from all Matthew Whited projects. This repository consolidates scattered Docker assets into a single, well-documented, reusable collection.
+
+**Architecture Version:** 3.0 (Self-contained services with higher-level compositions)
 
 ## Repository Purpose
 
@@ -24,28 +36,73 @@ Centralized collection of Docker containers, images, and compose stacks from all
 
 ```
 containers/
-├── images/                    # Custom Docker images (Dockerfiles)
-│   ├── dev-tools/            # Development environment images
-│   ├── runtime/              # Runtime-only images
-│   ├── databases/            # Database images with extensions
-│   └── ai-ml/                # AI/ML service images (Ollama, Qdrant, SBERT)
-├── compose/                   # Docker Compose stacks
-│   ├── dev-environments/     # Full-stack dev environments
-│   ├── databases/            # Database management stacks
-│   ├── ai-ml-stacks/         # AI/ML service combinations
-│   └── utilities/            # Monitoring, management tools
-├── scripts/                   # Build and management scripts
-│   ├── build-all.sh          # Build all images
-│   ├── push-all.sh           # Push to registry
-│   ├── cleanup.sh            # Cleanup script
-│   └── utils/                # Utility scripts
-├── docs/                      # Documentation
-│   ├── image-catalog.md      # Complete image catalog
-│   ├── compose-catalog.md    # Complete compose stack catalog
-│   ├── best-practices.md     # Containerization guidelines
-│   └── migration-guide.md    # Migration documentation
-└── .github/workflows/         # CI/CD automation
+├── services/                  # Self-contained services (Architecture v3.0)
+│   ├── databases/            # Database services (Qdrant, OpenSearch, SQL Server, ParadeDB, MongoDB)
+│   ├── ai-ml/                # AI/ML services (Ollama, SBERT)
+│   ├── utilities/            # Utility services (Apache Tika, PgAdmin, OpenSearch Dashboards, SMTP4Dev, Open WebUI)
+│   ├── messaging/            # Message brokers (RabbitMQ, Kafka)
+│   ├── cloud-emulators/      # Cloud service emulators (Azurite, LocalStack)
+│   └── auth/                 # Authentication services (Keycloak)
+├── compositions/              # Higher-level stacks combining services
+│   └── [composition-name]/   # Each composition with Compose, Swarm, Helm support
+│       ├── docker-compose.yml
+│       ├── docker-compose.swarm.yml
+│       ├── helm/
+│       └── docs/             # PlantUML diagrams
+├── templates/                 # Reusable templates
+│   ├── .dockerignore.dotnet
+│   └── dotnet-app/           # Generic .NET Docker template
+├── compose/                   # Legacy compose files (being migrated)
+│   └── ai-ml-stacks/
+│       └── full-ai-stack/    # Source of 16 services (sanitized)
+└── docs/                      # Repository documentation
+    ├── ARCHITECTURE.md        # Architecture v3.0 design
+    ├── STYLE_GUIDE.md         # Consistency standards
+    ├── COMPOSITION_GUIDE.md   # Composition creation guide
+    ├── SOURCE_TRACKING.md     # Migration source tracking
+    └── MIGRATION_STATUS.md    # Migration progress
 ```
+
+## Consistency Requirements
+
+**Before creating or modifying any service or composition:**
+
+1. **Read STYLE_GUIDE.md** for naming conventions and file structures
+2. **Consult ARCHITECTURE.md** for design patterns and service structure
+3. **Follow COMPOSITION_GUIDE.md** when creating compositions
+4. **Update SOURCE_TRACKING.md** when migrating services
+5. **Check MIGRATION_STATUS.md** for current priorities
+
+**All services must:**
+- Include both .sh and .bat scripts (cross-platform)
+- Have comprehensive README with API examples
+- Use environment variables with defaults
+- Include source tracking information
+- Follow the self-contained service pattern
+- Have persistent volumes where appropriate
+
+**All compositions must:**
+- Include PlantUML deployment and network diagrams
+- Support Docker Compose, Docker Swarm, and Kubernetes/Helm
+- Have comprehensive deployment documentation
+- Include health checks and resource limits
+
+## Adding New Services
+
+When adding a new service, follow the self-contained pattern from ARCHITECTURE.md v3.0:
+
+### Directory Structure
+
+Create: `services/[category]/[service-name]/`
+
+Required files:
+- `docker-compose.yml` - Standalone deployment
+- `.env.template` - Configuration with defaults and documentation
+- `README.md` - Complete documentation (see STYLE_GUIDE.md format)
+- `start.sh` / `start.bat` - Start scripts
+- `stop.sh` / `stop.bat` - Stop scripts
+- `Dockerfile` - Only if custom image needed
+- `build.sh` / `build.bat` - Only if custom image needed
 
 ## Adding New Docker Images
 
