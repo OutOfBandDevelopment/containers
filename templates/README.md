@@ -1,50 +1,74 @@
-# Docker Templates
+# Container Templates
 
-Standard Docker configuration templates for various project types.
+Reusable templates for creating new services and applications.
 
 ## .dockerignore Templates
 
 ### .dockerignore.dotnet
-
-Standard .dockerignore for .NET projects. Excludes:
-- Build outputs (bin/, obj/)
-- IDE files (.vs/, .vscode/, *.user)
-- Git repository (.git/)
-- Environment files (.env, secrets)
-- Documentation (LICENSE, README.md)
-- Node modules (for hybrid projects)
+Standard .dockerignore for .NET projects.
 
 **Usage:**
 ```bash
 cp templates/.dockerignore.dotnet /path/to/project/.dockerignore
 ```
 
+## Application Templates
+
+### dotnet-cqrs-app
+Template for .NET applications using CQRS (Command Query Responsibility Segregation) pattern.
+
+**Contains:**
+- Multi-stage Dockerfile for .NET 7.0 Web API
+- .dockerignore optimized for .NET
+- README with build instructions
+
+**Usage:**
+```bash
+cp -r templates/dotnet-cqrs-app /path/to/new-project
+cd /path/to/new-project
+# Modify for your application
+```
+
+**Pattern:** Multi-stage build (SDK → Runtime) for minimal production image
+
 **Source:** Migrated from code/learn/CQRS-Examples
 
-### Future Templates
+## Service Templates
 
-Additional templates to be added:
-- `.dockerignore.node` - Node.js projects
+### service-template (Coming Soon)
+Complete template for creating new containerized services.
+
+Will include:
+- Dockerfile.template
+- docker-compose.yml.template
+- .env.template.template
+- README.md.template
+
+## Future Templates
+
 - `.dockerignore.python` - Python projects
-- `.dockerignore.go` - Go projects
+- `.dockerignore.node` - Node.js projects
+- `dotnet-microservice` - .NET microservice template
+- `python-flask-api` - Flask API template
+- `node-express-api` - Express API template
 
-## Dockerfile Templates
+## Using Templates
 
-Future additions for common Dockerfile patterns:
-- Multi-stage .NET builds
-- Node.js development and production
-- Python data science environments
-- Go microservices
+1. **Copy template to your project:**
+   ```bash
+   cp -r templates/template-name /your/project/path
+   ```
 
-## Contributing
+2. **Customize for your needs:**
+   - Update names and ports
+   - Modify environment variables
+   - Adjust for your application structure
 
-When adding new templates:
-1. Name with appropriate extension (`.template` or `.{language}`)
-2. Include comments explaining each section
-3. Update this README with usage instructions
-4. Document the source/migration origin
+3. **Test:**
+   ```bash
+   docker compose up -d
+   ```
 
 ---
 
-*Created: 2026-01-09*
-*Templates migrated from public project examples*
+*Templates are starting points - customize them for your specific needs*
