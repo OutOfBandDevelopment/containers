@@ -1,0 +1,18 @@
+{{- if and .Values.searxng.enabled .Values.searxng.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "ai-workspace.fullname" . }}-searxng
+  labels:
+    {{- include "ai-workspace.labels" . | nindent 4 }}
+    app.kubernetes.io/component: searxng
+spec:
+  accessModes:
+    - {{ .Values.searxng.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.searxng.persistence.size }}
+  {{- if .Values.searxng.persistence.storageClass }}
+  storageClassName: {{ .Values.searxng.persistence.storageClass }}
+  {{- end }}
+{{- end }}

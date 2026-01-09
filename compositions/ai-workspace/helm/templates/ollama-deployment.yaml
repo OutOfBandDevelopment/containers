@@ -1,0 +1,50 @@
+{{- if .Values.ollama.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ai-workspace.fullname" . }}-ollama
+  labels:
+    {{- include "ai-workspace.labels" . | nindent 4 }}
+    app.kubernetes.io/component: ollama
+spec:
+  replicas: {{ .Values.ollama.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "ai-workspace.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: ollama
+  template:
+    metadata:
+      labels:
+        {{- include "ai-workspace.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: ollama
+    spec:
+      {{- with .Values.ollama.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.ollama.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - name: ollama
+        image: "{{ .Values.ollama.image.repository }}:{{ .Values.ollama.image.tag }}"
+        imagePullPolicy: {{ .Values.ollama.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 11434
+          protocol: TCP
+        resources:
+          {{- toYaml .Values.ollama.resources | nindent 12 }}
+        volumeMounts:
+        - name: data
+          mountPath: /root/.ollama
+      volumes:
+      - name: data
+        {{- if .Values.ollama.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ include "ai-workspace.fullname" . }}-ollama
+        {{- else }}
+        emptyDir: {}
+        {{- end }}
+{{- end }}

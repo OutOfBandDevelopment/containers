@@ -1,0 +1,45 @@
+{{- if .Values.openwebui.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ai-workspace.fullname" . }}-openwebui
+  labels:
+    {{- include "ai-workspace.labels" . | nindent 4 }}
+    app.kubernetes.io/component: openwebui
+spec:
+  replicas: {{ .Values.openwebui.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "ai-workspace.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: openwebui
+  template:
+    metadata:
+      labels:
+        {{- include "ai-workspace.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: openwebui
+    spec:
+      containers:
+      - name: openwebui
+        image: "{{ .Values.openwebui.image.repository }}:{{ .Values.openwebui.image.tag }}"
+        imagePullPolicy: {{ .Values.openwebui.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 3000
+          protocol: TCP
+        env:
+        - name: OLLAMA_BASE_URL
+          value: {{ .Values.openwebui.env.ollamaBaseUrl | quote }}
+        resources:
+          {{- toYaml .Values.openwebui.resources | nindent 12 }}
+        volumeMounts:
+        - name: data
+          mountPath: /app/backend/data
+      volumes:
+      - name: data
+        {{- if .Values.openwebui.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ include "ai-workspace.fullname" . }}-openwebui
+        {{- else }}
+        emptyDir: {}
+        {{- end }}
+{{- end }}

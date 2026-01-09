@@ -1,0 +1,47 @@
+{{- if .Values.searxng.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ai-workspace.fullname" . }}-searxng
+  labels:
+    {{- include "ai-workspace.labels" . | nindent 4 }}
+    app.kubernetes.io/component: searxng
+spec:
+  replicas: {{ .Values.searxng.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "ai-workspace.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/component: searxng
+  template:
+    metadata:
+      labels:
+        {{- include "ai-workspace.selectorLabels" . | nindent 8 }}
+        app.kubernetes.io/component: searxng
+    spec:
+      containers:
+      - name: searxng
+        image: "{{ .Values.searxng.image.repository }}:{{ .Values.searxng.image.tag }}"
+        imagePullPolicy: {{ .Values.searxng.image.pullPolicy }}
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        env:
+        - name: SEARXNG_BASE_URL
+          value: {{ .Values.searxng.env.baseUrl | quote }}
+        - name: SEARXNG_SECRET
+          value: {{ .Values.searxng.env.secret | quote }}
+        resources:
+          {{- toYaml .Values.searxng.resources | nindent 12 }}
+        volumeMounts:
+        - name: data
+          mountPath: /etc/searxng
+      volumes:
+      - name: data
+        {{- if .Values.searxng.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ include "ai-workspace.fullname" . }}-searxng
+        {{- else }}
+        emptyDir: {}
+        {{- end }}
+{{- end }}

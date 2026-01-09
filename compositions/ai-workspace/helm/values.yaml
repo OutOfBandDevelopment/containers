@@ -1,0 +1,125 @@
+# Default values for ai-workspace
+
+nginx:
+  enabled: true
+  replicaCount: 2
+  image:
+    repository: nginx
+    tag: alpine
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
+  ingress:
+    enabled: false
+    className: nginx
+    annotations: {}
+    hosts:
+      - host: ai-workspace.local
+        paths:
+          - path: /
+            pathType: Prefix
+    tls: []
+  resources:
+    limits:
+      cpu: 500m
+      memory: 256Mi
+    requests:
+      cpu: 250m
+      memory: 128Mi
+  serverName: localhost
+
+openwebui:
+  enabled: true
+  replicaCount: 2
+  image:
+    repository: ghcr.io/open-webui/open-webui
+    tag: main
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 3000
+  persistence:
+    enabled: true
+    storageClass: ""
+    accessMode: ReadWriteOnce
+    size: 2Gi
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi
+  env:
+    ollamaBaseUrl: "http://ai-workspace-ollama:11434"
+
+ollama:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: ollama/ollama
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 11434
+  persistence:
+    enabled: true
+    storageClass: ""
+    accessMode: ReadWriteOnce
+    size: 50Gi
+  resources:
+    limits:
+      nvidia.com/gpu: 1
+      memory: 16Gi
+    requests:
+      nvidia.com/gpu: 1
+      memory: 8Gi
+  nodeSelector:
+    gpu: "true"
+  tolerations: []
+
+searxng:
+  enabled: true
+  replicaCount: 2
+  image:
+    repository: searxng/searxng
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 8080
+  persistence:
+    enabled: true
+    storageClass: ""
+    accessMode: ReadWriteOnce
+    size: 1Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+  env:
+    baseUrl: "http://localhost/searxng/"
+    secret: "ultrasecretkey"
+
+apacheTika:
+  enabled: true
+  replicaCount: 2
+  image:
+    repository: apache/tika
+    tag: latest-full
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 9998
+  resources:
+    limits:
+      cpu: 2000m
+      memory: 4Gi
+    requests:
+      cpu: 1000m
+      memory: 2Gi

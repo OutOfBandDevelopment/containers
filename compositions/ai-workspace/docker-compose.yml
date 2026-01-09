@@ -1,0 +1,56 @@
+name: ai-workspace
+
+services:
+  nginx:
+    image: nginx:${NGINX_VERSION:-alpine}
+    container_name: ai-workspace-nginx
+    ports:
+      - "${NGINX_PORT:-80}:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    environment:
+      - NGINX_SERVER_NAME=${NGINX_SERVER_NAME:-localhost}
+    depends_on:
+      - open-webui
+      - ollama
+      - searxng
+      - apache-tika
+    networks:
+      - ai-workspace
+    restart: unless-stopped
+
+  open-webui:
+    extends:
+      file: ../../services/utilities/open-webui/docker-compose.yml
+      service: open-webui
+    networks:
+      - ai-workspace
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+
+  ollama:
+    extends:
+      file: ../../services/ai-ml/ollama/docker-compose.yml
+      service: ollama
+    networks:
+      - ai-workspace
+
+  searxng:
+    extends:
+      file: ../../services/utilities/searxng/docker-compose.yml
+      service: searxng
+    networks:
+      - ai-workspace
+    environment:
+      - SEARXNG_BASE_URL=${NGINX_SERVER_NAME:-http://localhost}/searxng/
+
+  apache-tika:
+    extends:
+      file: ../../services/utilities/apache-tika/docker-compose.yml
+      service: apache-tika
+    networks:
+      - ai-workspace
+
+networks:
+  ai-workspace:
+    driver: bridge

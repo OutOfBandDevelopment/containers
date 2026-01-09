@@ -1,0 +1,57 @@
+# Development environment overrides
+
+nginx:
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 250m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 64Mi
+
+openwebui:
+  replicaCount: 1
+  persistence:
+    size: 1Gi
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 250m
+      memory: 512Mi
+
+ollama:
+  replicaCount: 1
+  persistence:
+    size: 10Gi
+  resources:
+    limits:
+      nvidia.com/gpu: 1
+      memory: 8Gi
+    requests:
+      nvidia.com/gpu: 1
+      memory: 4Gi
+
+searxng:
+  replicaCount: 1
+  persistence:
+    size: 512Mi
+  resources:
+    limits:
+      cpu: 250m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+apacheTika:
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi

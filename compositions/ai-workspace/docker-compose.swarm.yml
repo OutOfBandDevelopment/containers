@@ -1,0 +1,127 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:${NGINX_VERSION:-alpine}
+    ports:
+      - target: 80
+        published: ${NGINX_PORT:-80}
+        mode: host
+    volumes:
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+        read_only: true
+    environment:
+      - NGINX_SERVER_NAME=${NGINX_SERVER_NAME:-localhost}
+    networks:
+      - ai-workspace
+    deploy:
+      replicas: 2
+      placement:
+        constraints:
+          - node.role == worker
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:${OPENWEBUI_VERSION:-main}
+    volumes:
+      - open-webui-data:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+    networks:
+      - ai-workspace
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
+      restart_policy:
+        condition: on-failure
+
+  ollama:
+    image: ollama/ollama:${OLLAMA_VERSION:-latest}
+    volumes:
+      - ollama-data:/root/.ollama
+    networks:
+      - ai-workspace
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.gpu == true
+      resources:
+        limits:
+          memory: 16G
+        reservations:
+          memory: 8G
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+      restart_policy:
+        condition: on-failure
+
+  searxng:
+    image: searxng/searxng:${SEARXNG_VERSION:-latest}
+    volumes:
+      - searxng-data:/etc/searxng
+    environment:
+      - SEARXNG_BASE_URL=${NGINX_SERVER_NAME:-http://localhost}/searxng/
+      - SEARXNG_SECRET=${SEARXNG_SECRET:-ultrasecretkey}
+    networks:
+      - ai-workspace
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
+      restart_policy:
+        condition: on-failure
+
+  apache-tika:
+    image: apache/tika:${TIKA_VERSION:-latest-full}
+    networks:
+      - ai-workspace
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '2'
+          memory: 4G
+        reservations:
+          cpus: '1'
+          memory: 2G
+      restart_policy:
+        condition: on-failure
+
+networks:
+  ai-workspace:
+    driver: overlay
+    attachable: true
+
+volumes:
+  open-webui-data:
+  ollama-data:
+  searxng-data:

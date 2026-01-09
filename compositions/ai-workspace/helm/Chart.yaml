@@ -1,0 +1,15 @@
+apiVersion: v2
+name: ai-workspace
+description: AI workspace with Open WebUI, Ollama, SearXNG, and Apache Tika behind nginx reverse proxy
+type: application
+version: 1.0.0
+appVersion: "1.0"
+keywords:
+  - ai
+  - llm
+  - search
+  - document-processing
+  - nginx
+maintainers:
+  - name: Matthew Whited
+    email: outofbanddevelopment@gmail.com

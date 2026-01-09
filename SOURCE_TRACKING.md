@@ -202,6 +202,14 @@ Each service README includes a "Source Tracking" section:
 - **Source files:** `MorePower/DockerFile.google-chrome`, `MorePower/chrome-start.sh`
 - **Notes:** Chrome browser with WSLg support and remote debugging
 
+#### PlantUML Server
+- **Location:** `services/dev-tools/plantuml/`
+- **Migrated from:** shared
+- **Source commit:** `7e8df998557b15f247aa0fea1444a1d10b1cd2b1`
+- **Source date:** 2025-10-23
+- **Source file:** `Scripts/containers/docker-compose.plantuml.yml`
+- **Notes:** Web-based PlantUML diagram rendering server with REST API
+
 ### AI/ML Services (Additional)
 
 #### ComfyUI
