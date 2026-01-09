@@ -256,6 +256,45 @@ Each service README includes a "Source Tracking" section:
 - **Source file:** `MorePower/DockerFile.Vivado`
 - **Notes:** Dependencies only - requires manual Vivado installation from AMD/Xilinx
 
+### Individual Language Development Containers
+
+#### dev-node
+- **Location:** `services/dev-tools/dev-node/`
+- **Created:** 2026-01-09
+- **Notes:** Lightweight Node.js development container using official node:lts image
+
+#### dev-dotnet
+- **Location:** `services/dev-tools/dev-dotnet/`
+- **Created:** 2026-01-09
+- **Notes:** Lightweight .NET development container using official mcr.microsoft.com/dotnet/sdk:9.0 image
+
+#### dev-python
+- **Location:** `services/dev-tools/dev-python/`
+- **Created:** 2026-01-09
+- **Notes:** Lightweight Python development container using official python:3.12 image
+
+#### dev-go
+- **Location:** `services/dev-tools/dev-go/`
+- **Created:** 2026-01-09
+- **Notes:** Lightweight Go development container using official golang:1.23 image
+
+#### dev-rust
+- **Location:** `services/dev-tools/dev-rust/`
+- **Created:** 2026-01-09
+- **Notes:** Lightweight Rust development container using official rust:latest image
+
+#### dev-java
+- **Location:** `services/dev-tools/dev-java/`
+- **Created:** 2026-01-09
+- **Notes:** Lightweight Java development container using official eclipse-temurin:21-jdk image
+
+### Utilities (Additional)
+
+#### SearXNG
+- **Location:** `services/utilities/searxng/`
+- **Created:** 2026-01-09
+- **Notes:** Privacy-respecting metasearch engine, created for ai-workspace composition
+
 ### Templates
 
 #### .NET Application
@@ -294,4 +333,4 @@ When checking for updates from source repositories:
 
 *Created: 2026-01-09*
 *Last updated: 2026-01-09*
-*Services tracked: 27 (18 from ContainerStore, 9 from RunScripts)*
+*Services tracked: 34 (17 from ContainerStore, 9 from RunScripts, 1 from shared, 7 created new)*
