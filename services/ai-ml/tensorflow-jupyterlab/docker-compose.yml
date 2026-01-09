@@ -1,0 +1,35 @@
+name: tensorflow-jupyterlab
+
+services:
+  tensorflow-jupyterlab:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TENSORFLOW_TAG: ${TENSORFLOW_TAG:-latest}
+    image: outofbanddevelopment/tensorflow-jupyterlab:${TENSORFLOW_VERSION:-latest}
+    container_name: tensorflow-jupyterlab
+    environment:
+      - KERAS_HOME=/keras
+      - JUPYTER_ENABLE_LAB=${JUPYTER_ENABLE_LAB:-yes}
+    ports:
+      - "${TENSORFLOW_JUPYTER_PORT:-8889}:8888"
+    volumes:
+      - tensorflow-workspace:/workspace
+      - tensorflow-keras:/keras
+    working_dir: /workspace
+    restart: unless-stopped
+    # Uncomment for GPU support (requires NVIDIA Docker runtime)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+volumes:
+  tensorflow-workspace:
+    name: tensorflow-workspace
+  tensorflow-keras:
+    name: tensorflow-keras
