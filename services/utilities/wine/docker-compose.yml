@@ -1,0 +1,31 @@
+name: wine
+
+services:
+  wine:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: outofbanddevelopment/wine:${WINE_VERSION:-latest}
+    container_name: wine
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-wayland-0}
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/mnt/wslg/runtime-dir}
+      - PULSE_SERVER=${PULSE_SERVER:-/mnt/wslg/PulseServer}
+    volumes:
+      - wine-prefix:/root/.wine
+      - wine-workspace:/workspace
+      # WSLg sockets (Windows WSL2)
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /mnt/wslg:/mnt/wslg
+    network_mode: host
+    ipc: host
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  wine-prefix:
+    name: wine-prefix
+  wine-workspace:
+    name: wine-workspace

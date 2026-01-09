@@ -1,0 +1,42 @@
+name: devbox
+
+services:
+  devbox:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        GO_VERSION: ${GO_VERSION:-1.23.5}
+    image: outofbanddevelopment/devbox:${DEVBOX_VERSION:-latest}
+    container_name: devbox
+    environment:
+      - DOTNET_CLI_TELEMETRY_OPTOUT=1
+      - GOPATH=/go
+    volumes:
+      - devbox-workspace:/workspace
+      - devbox-dotnet:/root/.dotnet
+      - devbox-nuget:/root/.nuget
+      - devbox-go:/go
+      - devbox-cargo:/root/.cargo
+      - devbox-npm:/root/.npm
+      - devbox-platformio:/root/.platformio
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  devbox-workspace:
+    name: devbox-workspace
+  devbox-dotnet:
+    name: devbox-dotnet
+  devbox-nuget:
+    name: devbox-nuget
+  devbox-go:
+    name: devbox-go
+  devbox-cargo:
+    name: devbox-cargo
+  devbox-npm:
+    name: devbox-npm
+  devbox-platformio:
+    name: devbox-platformio

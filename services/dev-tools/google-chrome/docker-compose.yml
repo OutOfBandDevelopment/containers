@@ -1,0 +1,29 @@
+name: google-chrome
+
+services:
+  google-chrome:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: outofbanddevelopment/google-chrome:${CHROME_VERSION:-latest}
+    container_name: google-chrome
+    environment:
+      - DISPLAY=${DISPLAY:-:0}
+      - WAYLAND_DISPLAY=${WAYLAND_DISPLAY:-wayland-0}
+      - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-/mnt/wslg/runtime-dir}
+      - PULSE_SERVER=${PULSE_SERVER:-/mnt/wslg/PulseServer}
+    volumes:
+      - chrome-data:/tmp/google-chrome
+      # WSLg sockets (Windows WSL2)
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /mnt/wslg:/mnt/wslg
+    ports:
+      - "${CHROME_DEBUG_PORT:-9223}:9223"
+    network_mode: host
+    ipc: host
+    stdin_open: true
+    tty: true
+
+volumes:
+  chrome-data:
+    name: chrome-data

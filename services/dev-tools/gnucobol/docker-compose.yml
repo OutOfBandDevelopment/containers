@@ -1,0 +1,19 @@
+name: gnucobol
+
+services:
+  gnucobol:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: outofbanddevelopment/gnucobol:${COBOL_VERSION:-latest}
+    container_name: gnucobol
+    volumes:
+      - gnucobol-workspace:/workspace
+    working_dir: /workspace
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+volumes:
+  gnucobol-workspace:
+    name: gnucobol-workspace

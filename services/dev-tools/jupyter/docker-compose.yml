@@ -1,0 +1,35 @@
+name: jupyter
+
+services:
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: outofbanddevelopment/jupyter:${JUPYTER_VERSION:-latest}
+    container_name: jupyter
+    environment:
+      - JUPYTER_ENABLE_LAB=${JUPYTER_ENABLE_LAB:-yes}
+      - DOTNET_CLI_TELEMETRY_OPTOUT=1
+      - GOPATH=/go
+    ports:
+      - "${JUPYTER_PORT:-8888}:8888"
+    volumes:
+      - jupyter-workspace:/workspace
+      - jupyter-dotnet:/root/.dotnet
+      - jupyter-go:/go
+      - jupyter-ruby:/root/.local/share/gem
+      - jupyter-npm:/root/.npm
+    working_dir: /workspace
+    restart: unless-stopped
+
+volumes:
+  jupyter-workspace:
+    name: jupyter-workspace
+  jupyter-dotnet:
+    name: jupyter-dotnet
+  jupyter-go:
+    name: jupyter-go
+  jupyter-ruby:
+    name: jupyter-ruby
+  jupyter-npm:
+    name: jupyter-npm
