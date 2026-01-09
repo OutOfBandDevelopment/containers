@@ -1,0 +1,9 @@
+name: apache-tika
+
+services:
+  apache-tika:
+    image: apache/tika:${TIKA_VERSION:-latest}
+    container_name: apache-tika
+    ports:
+      - "${TIKA_PORT:-9998}:9998"
+    restart: unless-stopped

@@ -1,0 +1,22 @@
+name: mongodb
+
+services:
+  mongodb:
+    image: mongo:${MONGODB_VERSION:-latest}
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_ROOT_USERNAME:-admin}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_ROOT_PASSWORD:-YourStrong@Password}
+      - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE:-admin}
+    ports:
+      - "${MONGODB_PORT:-27017}:27017"
+    volumes:
+      - mongodb-data:/data/db
+      - mongodb-config:/data/configdb
+    restart: unless-stopped
+
+volumes:
+  mongodb-data:
+    name: mongodb-data
+  mongodb-config:
+    name: mongodb-config

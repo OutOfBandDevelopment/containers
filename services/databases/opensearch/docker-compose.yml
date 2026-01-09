@@ -1,0 +1,29 @@
+name: opensearch
+
+services:
+  opensearch:
+    image: opensearchproject/opensearch:${OPENSEARCH_VERSION:-latest}
+    container_name: opensearch
+    environment:
+      - discovery.type=single-node
+      - OPENSEARCH_INITIAL_ADMIN_PASSWORD=${OPENSEARCH_ADMIN_PASSWORD:-YourStrong@Password}
+      - OPENSEARCH_JAVA_OPTS=${OPENSEARCH_JAVA_OPTS:--Xms512m -Xmx512m}
+      - bootstrap.memory_lock=${OPENSEARCH_MEMORY_LOCK:-true}
+      - plugins.security.ssl.http.enabled=${OPENSEARCH_SSL_HTTP:-false}
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - "${OPENSEARCH_PORT:-9200}:9200"
+      - "${OPENSEARCH_PERF_PORT:-9600}:9600"
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    restart: unless-stopped
+
+volumes:
+  opensearch-data:
+    name: opensearch-data

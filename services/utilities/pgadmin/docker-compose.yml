@@ -1,0 +1,21 @@
+name: pgadmin
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4:${PGADMIN_VERSION:-latest}
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=${PGADMIN_EMAIL:-admin@example.com}
+      - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_PASSWORD:-YourStrong@Password}
+      - PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION=${PGADMIN_COOKIE_PROTECTION:-True}
+      - PGADMIN_CONFIG_LOGIN_BANNER=${PGADMIN_LOGIN_BANNER:-"Authorised users only!"}
+      - PGADMIN_CONFIG_CONSOLE_LOG_LEVEL=${PGADMIN_LOG_LEVEL:-10}
+    ports:
+      - "${PGADMIN_PORT:-8082}:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    restart: unless-stopped
+
+volumes:
+  pgadmin-data:
+    name: pgadmin-data

@@ -1,0 +1,18 @@
+name: smtp4dev
+
+services:
+  smtp4dev:
+    image: rnwood/smtp4dev:${SMTP4DEV_VERSION:-latest}
+    container_name: smtp4dev
+    ports:
+      - "${SMTP4DEV_WEB_PORT:-7777}:80"
+      - "${SMTP4DEV_SMTP_PORT:-25}:25"
+      - "${SMTP4DEV_IMAP_PORT:-143}:143"
+      - "${SMTP4DEV_POP3_PORT:-110}:110"
+    volumes:
+      - smtp4dev-data:/smtp4dev
+    restart: unless-stopped
+
+volumes:
+  smtp4dev-data:
+    name: smtp4dev-data

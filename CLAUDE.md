@@ -224,11 +224,25 @@ When migrating Docker assets from other projects:
 ### Public Assets (No Sanitization Needed)
 
 1. Identify source location
-2. Copy Dockerfile/compose files to appropriate category
-3. Copy related files (.dockerignore, scripts, configs)
-4. Create README.md with migration source documented
-5. Update appropriate catalog (image or compose)
-6. Test build/deployment
+2. Get source commit hash and date:
+   ```bash
+   cd /current/src/[source-repository]
+   git log -1 --format="%H %cd" --date=short
+   ```
+3. Copy Dockerfile/compose files to appropriate category
+4. Copy related files (.dockerignore, scripts, configs)
+5. Create README.md with source tracking section:
+   ```markdown
+   ## Source Tracking
+
+   **Migrated from:** [repository-name]
+   **Source commit:** `[commit-hash]`
+   **Source date:** [YYYY-MM-DD]
+   **Source file:** `[original-file-path]`
+   ```
+6. Update SOURCE_TRACKING.md inventory
+7. Update appropriate catalog (image or compose)
+8. Test build/deployment
 
 ### Private Assets (Sanitization Required)
 
@@ -276,6 +290,25 @@ When migrating Docker assets from other projects:
    - Note original source (without client name)
    - Document what was sanitized
    - Add entry to docs/migration-guide.md
+
+6. **Add source tracking:**
+   ```bash
+   # Get source commit hash and date
+   cd /current/src/[source-repository]
+   git log -1 --format="%H %cd" --date=short
+   ```
+
+   Include in README.md:
+   ```markdown
+   ## Source Tracking
+
+   **Migrated from:** [repository-name]
+   **Source commit:** `[commit-hash]`
+   **Source date:** [YYYY-MM-DD]
+   **Source file:** `[original-file-path]`
+   ```
+
+7. **Update SOURCE_TRACKING.md inventory**
 
 ### Migration Priority
 
